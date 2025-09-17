@@ -1,5 +1,31 @@
 # SUAIA MCP workshop 18/09/25
 
+### Refer to the workshop [Github](https://github.com/bloodsterx/SUAIA-mcp-workshop)
+
+## Installations
+
+[Install cursor](https://cursor.com/en/downloads) OR [Install Claude Desktop](https://claude.ai/download)
+
+### Mac/Linux setup
+
+1. Install UV
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+2. Install Node.js
+[node and npm install guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+
+### Windows (PowerShell) setup
+
+1. Install UV
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+2. Install Node.js
+[node and npm install guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+
 ## Learning Outcomes
 
 1. Understand a high-level idea about the concepts of model context protocol, the components involved and the interactions between them (15 minutes)
@@ -25,7 +51,9 @@ ChatGPT is only as good as the person using it. It might spit out the most elabo
 
 What made AI 'agentic' was when we decided to allow LLMs to actually enact on their user's inputs. An LLM cannot perform the trivial task of 'sending an email', but it can perform the annoying task of writing it. 
 
-So, you give a component of your system a brain *powered by a large language model*, but strictly define how its outputs are to be used. Given user-input, the component decides on a function to call e.g. `write_email(content: str)`, generates the argument (normal LLM behaviour) and thats it- the logic of the function is developer-designed, a mailing API could be called for example sending the **AI generated** email message to some address.
+So, you give a component of your system a brain *powered by a large language model*, but strictly define how its outputs are to be used. 
+
+Given user-input, the component decides on a function to call e.g. `write_email(content: str)`, generates the argument (normal LLM behaviour) and thats it- the logic of the function is developer-designed, a mailing API could be called for example sending the **AI generated** email message to some address.
 
 Before MCP, developers wishing to create agentic AI software would have to manually create the interface which allowed their agents to make these API calls. This would be done **for every integration**, each implementation varying developer to developer.
 
@@ -107,7 +135,9 @@ E.g. user opens claude desktop and enters in the chatbox: 'write an apology emai
 }
 ```
 
-The host now has access to a big registry of callable functions. It decides to call `send_email`. The host (claude desktop) fills in the argument (writes the email), and says "hey client, call 'send_email' "
+The host now has access to a big registry of callable functions. 
+
+It decides to call `send_email`. The host (claude desktop) fills in the argument (writes the email), and says "hey client, call 'send_email' "
 
 #### Pseudo-code for AI application tool execution (courtesy of https://modelcontextprotocol.io/docs/learn/architecture)
 
@@ -120,9 +150,9 @@ async def handle_tool_call(conversation, tool_name, arguments):
 
 ## Part 3: Building, configuring & Testing
 
-### Step 1. Ensure either Claude Desktop or Cursor has been installed
+#### Step 1. Ensure either Claude Desktop or Cursor has been installed
 
-### Step 2. install uv if you dont already have it. IDC if you use pip, poetry whatever- UV is pip on crack, and makes life easier for us
+#### Step 2. Install uv if you dont already have it
 
 for Mac
 ```bash
@@ -147,7 +177,7 @@ uv add fastmcp
 uv add yfinance
 ```
 
-For windows/powershell
+For windows-powershell
 
 ```powershell
 uv init
@@ -157,7 +187,7 @@ uv add fastmcp
 uv add yfinance
 ```
 
-If you have clone the git repository, you can just run:
+If you have cloned the git repository, you can just run:
 ```bash
 uv sync
 ```
@@ -186,7 +216,9 @@ If you run into problems- no worries, as long as you have cursor/claude-desktop 
 
 **sanity check**. Do `source .venv/bin/activate`, and then `which python`. The python install path should have a .venv somewhere.
 
-Refer to the repo code in branch `stockbroker-simple`
+Refer to the repo code in branch `stockbroker-simple` if you get lost
+
+
 
 
 ### Step 5. configure server for cursor/claude
