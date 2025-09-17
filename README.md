@@ -1,6 +1,10 @@
 # SUAIA MCP workshop 18/09/25
 
-### Refer to the workshop [Github](https://github.com/bloodsterx/SUAIA-mcp-workshop)
+### Important stuff - github, docs etc
+
+#### Refer to the workshop [Github](https://github.com/bloodsterx/SUAIA-mcp-workshop)
+
+[FastMCP docs](https://gofastmcp.com/getting-started/welcome)
 
 ## Installations
 
@@ -212,24 +216,33 @@ If you run into problems- no worries, as long as you have cursor/claude-desktop 
 
 *note*: If you are running WSL, there is a chance things might get buggy for you later when trying to connect a host- it did for me on my work computer
 
-### Step 4. get to programming
+### Building & Testing
 
 **sanity check**. Do `source .venv/bin/activate`, and then `which python`. The python install path should have a .venv somewhere.
 
 Refer to the repo code in branch `stockbroker-simple` if you get lost
 
+Once you have the code in your ide, lets test that its working. In the command line, run:
 
+`fastmcp dev <path-to-the-mcp-server>`
 
+### Configure server for cursor/claude
 
-### Step 5. configure server for cursor/claude
+Now lets test this out in cursor/claude
 
 FastMCP abstracts this process and makes it super easy
 
+(dont forget the path ive put after yfinance is just the path to the mcp server- may be different for you)
+
 ```bash
-fastmcp install claude-desktop --with yfinance --with fastmcp src/servers/stockbroker-mcp.py
+fastmcp install claude-desktop --with yfinance src/servers/stockbroker-mcp.py
 # or, for cursor
-fastmcp install cursor --with yfinance --with fastmcp src/servers/stockbroker-mcp.py
+fastmcp install cursor --with yfinance src/servers/stockbroker-mcp.py
+```
 
+If cursor/claude are open, fully quit and then reopen them. I guarantee someone is going to have an error- Fernando will come around and try help
 
+If you do have an error, its likely to do with your environment, your installations or your OS being funky
 
-## Part 4: Make your own 
+### Resources!
+
