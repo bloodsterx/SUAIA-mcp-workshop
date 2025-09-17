@@ -1,5 +1,6 @@
-from fastmcp import FastMCP
+from fastmcp import Context, FastMCP
 import yfinance as yf
+import json
 
 mcp = FastMCP(name="stockbroker")
 
@@ -11,16 +12,6 @@ def get_stock_price(ticker: str) -> dict:
     """
     stock = yf.Ticker(ticker)
     return stock.info["regularMarketPrice"]
-
-# lets give the llm some context - the client is going to look through the exposed resources before deciding which tool to call and what args
-
-
-@mcp.resource("myportfolio://portfolio")
-def get_portfolio() -> dict:
-    """Retrieves and returns stock tickers in the user's portfolio"""
-    return {
-        "portfolio": ["AAPL", "MSFT", "GOOG", "AMZN", "TSLA", "NVDA", "META", "NFLX", "CSCO", "INTC"]
-    }
 
 
 @mcp.tool()
@@ -40,6 +31,14 @@ def summarize_portfolio(portfolio: list[str]) -> dict:
         portfolio_summary[ticker] = summary
 
     return portfolio_summary
+
+
+@mcp.resource("myportfolio://portfolio")
+def get_portfolio() -> dict:
+    """Retrieves and returns stocks in the user's portfolio"""
+    return {
+        "portfolio": ["AAPL", "MSFT", "GOOG", "AMZN", "TSLA", "NVDA", "META", "NFLX", "CSCO", "INTC"]
+    }
 
 
 if __name__ == "__main__":
