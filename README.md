@@ -2,17 +2,18 @@
 
 ## Learning Outcomes
 
-1. Understand a high-level idea about the concepts of model context protocol, the components involved and the interactions between them
+1. Understand a high-level idea about the concepts of model context protocol, the components involved and the interactions between them (15 minutes)
    1. MCP hosts and clients, MCP server and the layers of transport connecting them
-2. Learn and apply the basic core primitives exposed by MCP servers to provide agents with their functionality
+2. Learn and apply the basic core primitives exposed by MCP servers to provide agents with their functionality (15 minutes)
    1. Tools, resources and prompts
-3. Build a simple MCP server over STDIO transport (local transport layer) using FastMCP library for Python
-4. Configure hosts to use the MCP server via the command line
-5. Test the functionality of an MCP server using developer mode
-6. Create asynchronous tools which utilise resources
-7. Add external integrations
+3. Build a simple MCP server over STDIO transport (local transport layer) using FastMCP library for Python (30 minutes)
+4. Configure hosts to use the MCP server via the command line (5 minutes)
+5. Test the functionality of an MCP server using developer mode (10 minutes)
+6. Create asynchronous tools which utilise resources (10 minutes)
+7. Add external integrations (5 minutes)
+8. Make your own and demo! (remaining time)
 
-## Part 1: MCP — not AI, a protocol.
+## Part 1: MCP — not AI, a protocol
 
 **Model Context Protocol** was developed by Anthropic to establish an industry standard for how AI agents interact with systems and APIs.
 
@@ -133,18 +134,48 @@ for Windows
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-### Step 3. Create an environment and install fastmcp & yfinance
+### Step 3. Create an environment, install fastmcp & yfinance
 Please tell me you have been pip installing all your modules inside an environment, right?...
 
-Do this in a directory/folder somewhere
+Do this in a directory/folder somewhere (DO NOT CALL IT `mcp`, I believe it is a package in fastmcp and then your project's name will clash with the library's name or something)
 
 ```bash
 uv init
-uv venv
+uv venv .venv
 source .venv/bin/activate
 uv add fastmcp
 uv add yfinance
 ```
+
+Environments are so you only install libraries to a specific workplace. You set your environment to be the one you want with source .venv/bin/activate
+
+- You might know python -m venv .venv. This does the same thing basically
+
+optional, good practice (doesn't matter, but i'm a creature of habit)
+
+```bash
+mkdir -p src/servers && touch src/servers/stockbroker-mcp.py
+```
+
+ps- I have no idea how to use powershell so you might need to consult chatgpt for this workshop.
+
+If you are running WSL, there is a chance things might get buggy for you later when trying to connect a host- it did for me on my work computer
+
+### Step 4. get to programming
+
+**sanity check**. Do `source .venv/bin/activate`, and then `which python`. The python install path should have a .venv somewhere.
+
+Refer to the repo code.
+
+### Step 5. configure server for cursor/claude
+
+FastMCP abstracts this process and makes it super easy
+
+```bash
+fastmcp install claude-desktop --with yfinance --with fastmcp src/servers/stockbroker-mcp.py
+# or, for cursor
+fastmcp install cursor --with yfinance --with fastmcp src/servers/stockbroker-mcp.py
+
 
 
 ## Part 4: Make your own 
