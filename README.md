@@ -147,25 +147,47 @@ uv add fastmcp
 uv add yfinance
 ```
 
+For windows/powershell
+
+```powershell
+uv init
+uv venv .venv
+.venv/Scripts/Activate.ps1
+uv add fastmcp
+uv add yfinance
+```
+
+If you have clone the git repository, you can just run:
+```bash
+uv sync
+```
+
 Environments are so you only install libraries to a specific workplace. You set your environment to be the one you want with source .venv/bin/activate
 
 - You might know python -m venv .venv. This does the same thing basically
 
-optional, good practice (doesn't matter, but i'm a creature of habit)
+The next part is optional, good practice (doesn't matter, but i'm a creature of habit)
 
 ```bash
 mkdir -p src/servers && touch src/servers/stockbroker-mcp.py
 ```
 
-ps- I have no idea how to use powershell so you might need to consult chatgpt for this workshop.
+#### installing node.js (optional- needed to run developer mode in mcp)
 
-If you are running WSL, there is a chance things might get buggy for you later when trying to connect a host- it did for me on my work computer
+[node and npm install guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+
+You dont have to do this for this workshop, but if you want to be a software engineer you'll need node.js eventually i guess.
+
+If you run into problems- no worries, as long as you have cursor/claude-desktop this will work.
+
+*note*: If you are running WSL, there is a chance things might get buggy for you later when trying to connect a host- it did for me on my work computer
 
 ### Step 4. get to programming
 
 **sanity check**. Do `source .venv/bin/activate`, and then `which python`. The python install path should have a .venv somewhere.
 
-Refer to the repo code.
+Refer to the repo code in branch `stockbroker-simple`
+
 
 ### Step 5. configure server for cursor/claude
 
