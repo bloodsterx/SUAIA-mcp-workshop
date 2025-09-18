@@ -286,3 +286,4 @@ I'll be installing:
 
 ## Part 5: Get Creative
 
+Challenge - however you want (manually - bonus points, or via integration), use a linkedin MCP server to create a linkedin post summarizing what we did today and include a workshop selfie. Let any of us know if you actually do this.
