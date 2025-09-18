@@ -69,6 +69,26 @@ def fetch_mcp_portfolio() -> dict:
     }
 
 
+@mcp.prompt("detailed-stock-analysis-prompt")
+def detailed_stock_analysis_prompt(ticker: str, company_name: str = "") -> str:
+    """
+    Generates a detailed, context-rich prompt for an LLM to perform a professional-grade stock analysis, including recent performance, risk factors, sentiment, and actionable insights.
+    """
+    return f"""
+You are a financial analyst at a leading investment firm. Your task is to provide a comprehensive, data-driven analysis of the stock {ticker}{' (' + company_name + ')' if company_name else ''} for a client considering a significant investment. Your analysis should include:
+
+1. A concise summary of the company's business and its position in the industry.
+2. Recent stock price performance (last 6 months), highlighting key trends and volatility.
+3. Notable news, events, or earnings reports in the past quarter that have impacted the stock.
+4. An assessment of current market sentiment (bullish, bearish, or neutral) with supporting evidence.
+5. Identification of major risks and opportunities facing the company.
+6. A summary of analyst consensus (if available) and any recent changes in ratings or price targets.
+7. Your actionable recommendation (buy, hold, sell) with a brief rationale.
+
+Be objective, cite data where possible, and keep your response under 300 words. Format your answer with clear headings for each section."
+"""
+
+
 if __name__ == "__main__":
     # This runs the server. Transport parameter allows you to specify STDIO transport (local filesystem) and HTTPS ()
     mcp.run()
