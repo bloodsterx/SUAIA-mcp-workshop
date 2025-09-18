@@ -6,7 +6,7 @@ mcp = FastMCP(name="stockbroker")
 
 
 @mcp.tool()
-def get_stock_price(ticker: str) -> dict:
+def get_stock_price(ticker: str) -> float:
     """
     Retrieve the current price of a stock given a ticker symbol
     """
@@ -15,8 +15,46 @@ def get_stock_price(ticker: str) -> dict:
 
 
 @mcp.tool()
+def list_portfolio_stocks(portfolio: list[str]) -> list[str]:
+    """List all stocks in the user's portfolio
+
+    Resource Dependencies:
+        - The User's Portfolio is exposed by the resource `fetch_mcp_portfolio`, with portfolio data at the URI: `myportfolio://portfolio`
+
+    args:
+        portfolio (list[str]): A list of stock tickers to list read from the data resource at URI: `myportfolio://portfolio`
+
+    returns:
+        list[str]: A list of stock tickers in the user's portfolio
+    """
+    return portfolio
+
+# lets give the llm some context - the client is going to look through the exposed resources before deciding which tool to call and what args
+
+
+@mcp.resource("myportfolio://total-market/{stock_ticker}-latest-news")
+def get_latest_news(stock_ticker: str) -> dict:
+    """
+    Retrieves and returns the latest news for a given stock ticker
+
+    Args:
+        stock_ticker (str): The stock ticker to get the latest news for.
+
+    Returns:
+        dict: The latest news for the given stock ticker
+    """
+    stock = yf.Ticker(stock_ticker)
+    return stock.news
+
+
+@mcp.tool()
 def summarize_portfolio(portfolio: list[str]) -> dict:
-    """Summarizes the portfolio of stocks in the user's portfolio"""
+    """Summarizes market data for a given list of stock tickers.
+
+    IMPORTANT: This tool requires a list of tickers as input. To get the user's
+    default portfolio (if the portfolio is not provided), you must first call the
+    `fetch_mcp_resource` tool with the server `stockbroker` and the URI 'myportfolio://portfolio' to retrieve the list of stocks.
+    """
 
     portfolio_summary = {}
     for ticker in portfolio:
@@ -34,7 +72,7 @@ def summarize_portfolio(portfolio: list[str]) -> dict:
 
 
 @mcp.resource("myportfolio://portfolio")
-def get_portfolio() -> dict:
+def fetch_mcp_portfolio() -> dict:
     """Retrieves and returns stocks in the user's portfolio"""
     return {
         "portfolio": ["AAPL", "MSFT", "GOOG", "AMZN", "TSLA", "NVDA", "META", "NFLX", "CSCO", "INTC"]
