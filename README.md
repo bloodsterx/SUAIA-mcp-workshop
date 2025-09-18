@@ -246,3 +246,10 @@ If you do have an error, its likely to do with your environment, your installati
 
 ### Resources!
 
+Sometimes, you may want to perform some function which requires extra context - the user's input may not be sufficient. 
+
+Resources act as a way to represent data/files readable my the MCP client. Resources may be **static** or **dynamic**.
+
+A resource is given by the @mcp.resource() decorator, and takes a URI argument which indicates where to get the 'resource' or data. Note, this isn't a URI you can just look-up, it is an internally managed data address which provides the agent with important context which is either:
+- pre-determined (**static**, no arguments)
+- dynamic (**dynamic**, called a 'template resource' which has arguments)
