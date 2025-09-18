@@ -268,5 +268,8 @@ Lets look at a static example. This is going to probably not work! Why?
 
 Lets improve the docstrings. Imagine you are prompt engineering your agent.
 
-** What's Changed? **
-1. Clearly outlined that r
+Unfortunately, resources (as you may read on many sources online) are slighlty confusing, some people debating whether they are useful at all. It is a very 'under the hood' component of MCP.
+
+### Prompts
+
+This is super useful: Prompt Templates! Suppose you are often using a similar prompt for some repetitive task, or 
