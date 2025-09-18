@@ -16,24 +16,14 @@ def get_stock_price(ticker: str) -> float:
 
 @mcp.tool()
 def list_portfolio_stocks(portfolio: list[str]) -> list[str]:
-    """List all stocks in the user's portfolio
-
-    Resource Dependencies:
-        - The User's Portfolio is exposed by the resource `fetch_mcp_portfolio`, with portfolio data at the URI: `myportfolio://portfolio`
-
-    args:
-        portfolio (list[str]): A list of stock tickers to list read from the data resource at URI: `myportfolio://portfolio`
-
-    returns:
-        list[str]: A list of stock tickers in the user's portfolio
-    """
+    """List all stocks in the user's portfolio. If not provided, the portfolio data is retrieved from the URI exposed by the resource `fetch_mcp_resource`."""
     return portfolio
 
 # lets give the llm some context - the client is going to look through the exposed resources before deciding which tool to call and what args
 
 
-@mcp.resource("myportfolio://total-market/{stock_ticker}-latest-news")
-def get_latest_news(stock_ticker: str) -> dict:
+@mcp.tool()
+def fetch_latest_news(stock_ticker: str) -> dict:
     """
     Retrieves and returns the latest news for a given stock ticker
 

@@ -260,3 +260,8 @@ Lets look at a static example. This is going to probably not work! Why?
 3. LLMs don't 'call' the resource function- the resource exposes data at a URI. Have a look here (cursor > mcp settings)
 
 #### Resources but better
+
+Lets improve the docstrings. Imagine you are prompt engineering your agent.
+
+** What's Changed? **
+1. Clearly outlined that r
