@@ -241,3 +241,22 @@ If you do have an error, its likely to do with your environment, your installati
 
 ### Resources!
 
+Sometimes, you may want to perform some function which requires extra context - the user's input may not be sufficient. 
+
+Resources act as a way to represent data/files readable my the MCP client. Resources may be **static** or **dynamic**.
+
+A resource is given by the @mcp.resource() decorator, and takes a URI argument which indicates where to get the 'resource' or data. Note, this isn't a URI you can just look-up, it is an internally managed data address which provides the agent with important context which is either:
+- pre-determined (**static**, no arguments)
+- dynamic (**dynamic**, called a 'template resource' which has arguments)
+
+What is the difference betweeen resources/tools? Can't I just have a tool retrieve the resource without having the llm to call it?
+- You may, and for our purposes- this would work, but think on a larger scale
+- Inefficient data access versus a frequently accessed piece of data cached at some URI exposed by our resource
+- Database querying time massively reduces when we store caches of data at resource URIs (LLM doesn't have to call tool which fetches from DB)
+
+Lets look at a static example. This is going to probably not work! Why?
+1. Weak, uninformative docstrings
+2. LLM probably isn't the smartest it can be.
+3. LLMs don't 'call' the resource function- the resource exposes data at a URI. Have a look here (cursor > mcp settings)
+
+#### Resources but better
