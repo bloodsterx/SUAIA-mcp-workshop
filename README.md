@@ -206,15 +206,10 @@ The next part is optional, good practice (doesn't matter, but i'm a creature of 
 mkdir -p src/servers && touch src/servers/stockbroker-mcp.py
 ```
 
-#### installing node.js (optional- needed to run developer mode in mcp)
+#### installing node.js (needed for almost every integration + claude apparently + developer mode)
 
 [node and npm install guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-You dont have to do this for this workshop, but if you want to be a software engineer you'll need node.js eventually i guess.
-
-If you run into problems- no worries, as long as you have cursor/claude-desktop this will work.
-
-*note*: If you are running WSL, there is a chance things might get buggy for you later when trying to connect a host- it did for me on my work computer
 
 ### Building & Testing
 
