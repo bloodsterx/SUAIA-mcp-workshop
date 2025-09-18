@@ -49,7 +49,7 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 
 #### Why do we care?
 
-AI agents are as useful as chatGPT, grok, gemini - any LLM. In other-words, **pretty useless**.
+Your average LLM is **pretty useless**.
 
 ChatGPT is only as good as the person using it. It might spit out the most elaborate marketing strategy, or software development pipeline, but the road ended there. The user had to make decisions given the information outputted by the LLM.
 
@@ -63,9 +63,13 @@ Before MCP, developers wishing to create agentic AI software would have to manua
 
 #### MCP acts as the usb port that works everywhere
 
-While one end of a charging cord may be usb-c or micro-usb or lightning, the other end of all these cords is usb-A (yes yes you have dual usb-c ended cords, not the point).
+Imagine one of those multi-purpose port extenders for your computer. You can plug in usb c, usb-A, HDMI even... That's MCP
 
-Notion, for example, would create their own **MCP server** which defines the different functions an agent can call and the outputs they would provide. Developers of agentic AI software can just 'connect' to these servers, exposing these functions and features to their agentic without writing a single line of logic.
+Notion, for example, would create their own **MCP server** which defines the different functions an agent can call and the outputs they would provide.
+
+Developers of agentic AI software can just 'connect' to these servers, exposing these functions and features to their agent without writing a single line of logic.
+
+![mcp diagram](https://www.descope.com/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fxqb1f63q68s1%2F2x3R1j8peZzdnweb5m1RK3%2Fa8628561358334a605e7f291560fc7cc%2FMCP_learning_center_image_1-min__1_.png&w=1920&q=75)
 
 You could probably build a simple N8N with an ugly GUI in a week. Maybe 48 hours if you are cracked enough.
 
@@ -77,9 +81,11 @@ MCP has been crucial in revolutionising innovation in SaaS - ship agentic produc
 
 ## Part 2: MCP architecture — a high-level exploration
 
+![omg your so smart and funny](https://www.ibm.com/content/dam/connectedassets-adobe-cms/worldwide-content/creative-assets/s-migr/ul/g/55/91/model-context-protocol-architecture.png)
+
 ### Hosts (the brain)
 
-The brain of the agent- the MCP host is an AI application (like Cursor, Claude Code, Claude Desktop). I will be using Cursor, but the only different with Claude Desktop is the configuration which I'll show later.
+The brain of the agent- the MCP host is an AI application (like Cursor, Claude Code, Claude Desktop). I will be using Cursor, but the only difference with Claude Desktop is the configuration and the way you add resources which I'll show later.
 
 ### Clients (the middleman)
 
@@ -272,4 +278,16 @@ Unfortunately, resources (as you may read on many sources online) are slighlty c
 
 ### Prompts
 
-This is super useful: Prompt Templates! Suppose you are often using a similar prompt for some repetitive task, or 
+This is super useful: Prompt Templates! Suppose you are often using a similar prompt for some repetitive task. Just write a @mcp.prompt(). This is callable whenever you want
+
+## Part 4: External integrations
+
+https://github.com/modelcontextprotocol/servers?tab=readme-ov-file
+
+I'll be installing:
+- MCP installer. How meta - https://github.com/matthewdcage/cursor-mcp-installer
+- this pdf reader https://github.com/gpetraroli/mcp_pdf_reader
+- OP.GG, so even the LLM can laugh at how i'm forever hardstuck bronze: https://github.com/opgginc/opgg-mcp
+
+## Part 5: Get Creative
+
